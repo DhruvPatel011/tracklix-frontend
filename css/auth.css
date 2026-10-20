@@ -178,7 +178,7 @@
 /* ================= TITLES ================= */
 
 .auth-title {
-  
+
   margin: 0;
 
   font-size: 40px;
@@ -635,4 +635,50 @@
 [data-theme="dark"] .pw-bar {
 
   background: #27272a;
+}
+
+
+
+
+.otp-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.otp-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.otp-row button {
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #262626;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.otp-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.otp-text-btn {
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary, #4f46e5);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.otp-text-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -98,20 +98,33 @@
           </div>
         </div>
 
-        <div class="field-group">
-          <label for="regOtp">Email Verification Code</label>
-          <div class="input-wrap">
-            <i class="fa-solid fa-shield-halved input-icon"></i>
-            <input
-              type="text"
-              id="regOtp"
-              placeholder="Enter 6-digit OTP"
-              inputmode="numeric"
-              maxlength="6"
-              autocomplete="one-time-code"
-              disabled
-            />
-          </div>
+
+<div class="field-group">
+  <label for="regOtp">Email Verification Code</label>
+
+  <div class="otp-row">
+    <input
+      type="text"
+      id="regOtp"
+      placeholder="6-digit OTP"
+      inputmode="numeric"
+      maxlength="6"
+      autocomplete="one-time-code"
+      disabled
+    />
+
+    <button type="button" id="verifyOtpBtn" disabled>
+      Verify
+    </button>
+  </div>
+
+  <button type="button" id="sendOtpBtn" class="otp-text-btn">
+    Send verification code
+  </button>
+
+  <span id="otpStatus" class="field-error"></span>
+</div>
+
           <span id="otpStatus" class="field-error"></span>
 
           <button type="button" id="sendOtpBtn" class="btn-primary">
