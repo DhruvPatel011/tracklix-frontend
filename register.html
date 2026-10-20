@@ -29,7 +29,7 @@
     <div class="orb orb-3"></div>
     <div class="grid-overlay"></div>
   </div>
- 
+
   <div class="auth-container">
     <div class="auth-card auth-card--wide">
       <div class="auth-brand">
@@ -38,16 +38,16 @@
       </div>
       <h1 class="auth-title">Create account</h1>
       <p class="auth-subtitle">Start managing your finances smarter</p>
- 
+
       <div id="regAlert" class="alert hidden"></div>
- 
+
       <a href="#" id="googleRegBtn" class="btn-google">
         <img src="https://www.google.com/favicon.ico" alt="Google" />
         Sign up with Google
       </a>
- 
+
       <div class="auth-divider"><span>or register with email</span></div>
- 
+
       <form id="registerForm" class="auth-form" novalidate>
         <div class="form-row">
           <div class="field-group">
@@ -97,6 +97,38 @@
             </select>
           </div>
         </div>
+
+        <div class="field-group">
+          <label for="regOtp">Email Verification Code</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-shield-halved input-icon"></i>
+            <input
+              type="text"
+              id="regOtp"
+              placeholder="Enter 6-digit OTP"
+              inputmode="numeric"
+              maxlength="6"
+              autocomplete="one-time-code"
+              disabled
+            />
+          </div>
+          <span id="otpStatus" class="field-error"></span>
+
+          <button type="button" id="sendOtpBtn" class="btn-primary">
+            Send Email OTP
+          </button>
+
+          <button
+            type="button"
+            id="verifyOtpBtn"
+            class="btn-primary"
+            disabled
+            style="margin-top:10px"
+          >
+            Verify OTP
+          </button>
+        </div>
+
         <button type="submit" class="btn-primary" id="regBtn">
           <span class="btn-text">Create Account</span>
           <span class="btn-loader hidden"><i class="fa-solid fa-spinner fa-spin"></i></span>
@@ -105,88 +137,238 @@
       <p class="auth-link">Already have an account? <a href="index.html">Sign in</a></p>
     </div>
   </div>
- 
+
   <script type="module">
+
     import { BACKEND_BASE } from './js/storage.js';
- 
-    document.getElementById('googleRegBtn').href = `${BACKEND_BASE}/api/auth/google`;
- 
-    function togglePw(btnId, inputId) {
-      document.getElementById(btnId).addEventListener('click', () => {
-        const el = document.getElementById(inputId);
-        const icon = document.getElementById(btnId).querySelector('i');
-        el.type = el.type === 'password' ? 'text' : 'password';
-        icon.className = el.type === 'password' ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
+
+    const $ = (id) => document.getElementById(id);
+
+    const form = $('registerForm');
+    const alertBox = $('regAlert');
+    const otpInput = $('regOtp');
+    const otpStatus = $('otpStatus');
+    const sendBtn = $('sendOtpBtn');
+    const verifyBtn = $('verifyOtpBtn');
+    const createBtn = form.querySelector('[type="submit"]');
+
+    let otpSent = false;
+    let emailVerified = false;
+    let busy = false;
+
+    function showAlert(message, type = 'error') {
+      alertBox.className = `alert alert-${type}`;
+      alertBox.textContent = message;
+      alertBox.classList.remove('hidden');
+    }
+
+    function setBusy(value) {
+      busy = value;
+      sendBtn.disabled = value;
+      verifyBtn.disabled = value || !otpSent || emailVerified;
+      createBtn.disabled = value || !emailVerified;
+    }
+
+    async function postJSON(path, payload) {
+      const response = await fetch(`${BACKEND_BASE}${path}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Request failed. Please try again.');
+      }
+
+      return data;
+    }
+
+    function getFormData() {
+      return {
+        name: $('regName').value.trim(),
+        email: $('regEmail').value.trim().toLowerCase(),
+        password: $('regPassword').value,
+        confirm: $('regConfirm').value,
+        currency: $('regCurrency').value
+      };
+    }
+
+    function validateForm() {
+      const data = getFormData();
+
+      if (!data.name || !data.email || !data.password || !data.confirm) {
+        throw new Error('Please complete all required fields.');
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        throw new Error('Please enter a valid email address.');
+      }
+
+      if (data.password.length < 8) {
+        throw new Error('Password must be at least 8 characters.');
+      }
+
+      if (data.password !== data.confirm) {
+        throw new Error('Passwords do not match.');
+      }
+
+      return data;
+    }
+
+    // Password visibility
+    function togglePassword(buttonId, inputId) {
+      $(buttonId).addEventListener('click', () => {
+        const input = $(inputId);
+        const icon = $(buttonId).querySelector('i');
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.className = input.type === 'password'
+          ? 'fa-regular fa-eye'
+          : 'fa-regular fa-eye-slash';
       });
     }
-    togglePw('togglePw1', 'regPassword');
-    togglePw('togglePw2', 'regConfirm');
- 
-    document.getElementById('regPassword').addEventListener('input', e => {
-      const v = e.target.value;
-      let s = 0;
-      if (v.length >= 8) s++;
-      if (/[A-Z]/.test(v)) s++;
-      if (/[0-9]/.test(v)) s++;
-      if (/[^a-zA-Z0-9]/.test(v)) s++;
-      const colors = ['','#ef4444','#f59e0b','#06b6d4','#10b981'];
-      const labels = ['','Weak','Fair','Good','Strong'];
-      document.getElementById('pwFill').style.cssText = `width:${s*25}%;background:${colors[s]}`;
-      const lbl = document.getElementById('pwLabel');
-      lbl.textContent = labels[s] || '';
-      lbl.style.color = colors[s];
+
+    togglePassword('togglePw1', 'regPassword');
+    togglePassword('togglePw2', 'regConfirm');
+
+    // Password strength indicator
+    $('regPassword').addEventListener('input', (event) => {
+      const value = event.target.value;
+      let score = 0;
+
+      if (value.length >= 8) score++;
+      if (/[A-Z]/.test(value)) score++;
+      if (/[0-9]/.test(value)) score++;
+      if (/[^a-zA-Z0-9]/.test(value)) score++;
+
+      const colors = ['', '#ef4444', '#f59e0b', '#06b6d4', '#10b981'];
+      const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+
+      $('pwFill').style.width = `${score * 25}%`;
+      $('pwFill').style.background = colors[score];
+      $('pwLabel').textContent = labels[score];
+      $('pwLabel').style.color = colors[score];
     });
- 
-    function showAlert(msg, type = 'error') {
-      const el = document.getElementById('regAlert');
-      el.className = `alert alert-${type}`;
-      el.textContent = msg;
-      el.classList.remove('hidden');
-    }
- 
-    function setLoading(on) {
-      const btn = document.getElementById('regBtn');
-      btn.querySelector('.btn-text').classList.toggle('hidden', on);
-      btn.querySelector('.btn-loader').classList.toggle('hidden', !on);
-      btn.disabled = on;
-    }
- 
-    document.getElementById('registerForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const name     = document.getElementById('regName').value.trim();
-      const email    = document.getElementById('regEmail').value.trim();
-      const password = document.getElementById('regPassword').value;
-      const confirm  = document.getElementById('regConfirm').value;
-      const currency = document.getElementById('regCurrency').value;
- 
-      if (!name || !email || !password || !confirm) { showAlert('All fields are required.'); return; }
-      if (password.length < 8) { showAlert('Password must be at least 8 characters.'); return; }
-      if (password !== confirm) { showAlert('Passwords do not match.'); return; }
- 
-      setLoading(true);
+
+    // If email changes after sending/verifying OTP, require a new OTP.
+    $('regEmail').addEventListener('input', () => {
+      otpSent = false;
+      emailVerified = false;
+      otpInput.value = '';
+      otpInput.disabled = true;
+      otpStatus.textContent = '';
+      verifyBtn.disabled = true;
+      createBtn.disabled = false;
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send Email OTP';
+    });
+
+    sendBtn.addEventListener('click', async () => {
+      if (busy) return;
+
       try {
-        const res = await fetch(`${BACKEND_BASE}/api/auth/register`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, currency }),
+        const data = validateForm();
+        setBusy(true);
+        showAlert('Sending verification code…', 'success');
+
+        await postJSON('/api/otp/send', {
+          email: data.email,
+          purpose: 'email_verify'
         });
-        const data = await res.json();
- 
-        if (!res.ok) {
-          showAlert(data.message || 'Registration failed.');
-          return;
-        }
- 
-        // ✅ Success — go to login page
-        showAlert('✅ Account created! Redirecting to sign in…', 'success');
-        setTimeout(() => window.location.href = 'index.html', 1500);
- 
-      } catch (err) {
-        showAlert('Server se connect nahi ho pa raha. Please try again.');
+
+        otpSent = true;
+        emailVerified = false;
+        otpInput.disabled = false;
+        verifyBtn.disabled = false;
+        otpStatus.textContent = 'Check your inbox for the 6-digit code.';
+        sendBtn.textContent = 'Resend Email OTP';
+        showAlert('OTP sent. Check your email, including Spam/Junk.', 'success');
+      } catch (error) {
+        showAlert(error.message);
       } finally {
-        setLoading(false);
+        setBusy(false);
       }
     });
+
+    verifyBtn.addEventListener('click', async () => {
+      if (busy || !otpSent) return;
+
+      const otp = otpInput.value.trim();
+
+      if (!/^\d{6}$/.test(otp)) {
+        otpStatus.textContent = 'Enter a valid 6-digit OTP.';
+        return;
+      }
+
+      try {
+        const data = getFormData();
+        setBusy(true);
+
+        await postJSON('/api/otp/verify', {
+          email: data.email,
+          otp,
+          purpose: 'email_verify'
+        });
+
+        emailVerified = true;
+        otpInput.disabled = true;
+        verifyBtn.disabled = true;
+        sendBtn.disabled = true;
+        createBtn.disabled = false;
+        otpStatus.textContent = 'Email verified successfully.';
+        showAlert('Email verified! You can now create your account.', 'success');
+      } catch (error) {
+        showAlert(error.message);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (busy) return;
+
+      try {
+        if (!emailVerified) {
+          throw new Error('Please verify your email before creating an account.');
+        }
+
+        const data = validateForm();
+        const otp = otpInput.value.trim();
+
+        setBusy(true);
+
+        await postJSON('/api/auth/register', {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          currency: data.currency,
+          otp
+        });
+
+        showAlert('Account created! Redirecting to sign in…', 'success');
+
+        form.reset();
+        emailVerified = false;
+        otpSent = false;
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1200);
+      } catch (error) {
+        showAlert(error.message);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    // Registration is disabled until the OTP is verified.
+    createBtn.disabled = true;
+    verifyBtn.disabled = true;
+    otpInput.disabled = true;
+
   </script>
 </body>
 </html>
