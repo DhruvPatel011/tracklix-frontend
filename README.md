@@ -8,7 +8,7 @@ Tracklix helps users manage income, expenses, savings, and monthly budgets throu
 
 ## Live Demo
 
-[https://expense-tracker-gamma-ruddy.vercel.app/](https://tracklix-frontend.vercel.app/)
+https://tracklix-frontend.vercel.app/
 
 ---
 
