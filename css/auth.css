@@ -639,46 +639,127 @@
 
 
 
+/* =========================================
+   TRACKLIX — EMAIL OTP UI
+========================================= */
 
 .otp-row {
   display: flex;
   align-items: stretch;
-  gap: 8px;
+  gap: 10px;
+  width: 100%;
 }
 
 .otp-row input {
+  box-sizing: border-box;
   flex: 1;
   min-width: 0;
-}
-
-.otp-row button {
+  width: 100%;
+  height: 54px;
   padding: 0 16px;
-  border: 0;
-  border-radius: 8px;
-  background: #262626;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.otp-row button:disabled {
-  opacity: 0.5;
+.otp-row input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.12);
+}
+
+.otp-row input:disabled {
+  opacity: 0.65;
   cursor: not-allowed;
 }
 
+.otp-row button {
+  flex-shrink: 0;
+  min-width: 88px;
+  height: 54px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--primary);
+  color: var(--card);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.otp-row button:hover:not(:disabled) {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.otp-row button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Small text-style send/resend control */
 .otp-text-btn {
-  margin-top: 8px;
-  padding: 0;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 4px 0;
   border: 0;
   background: transparent;
-  color: var(--primary, #4f46e5);
+  color: var(--text);
   font: inherit;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.otp-text-btn:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .otp-text-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* OTP status and validation message */
+#otpStatus {
+  display: block;
+  min-height: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#otpStatus:empty {
+  display: none;
+}
+
+/* Prevent unwanted button movement when disabled */
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .otp-row {
+    gap: 8px;
+  }
+
+  .otp-row input,
+  .otp-row button {
+    height: 50px;
+    border-radius: 14px;
+  }
+
+  .otp-row button {
+    min-width: 76px;
+    padding: 0 12px;
+  }
 }
