@@ -1,48 +1,40 @@
 # Tracklix – Personal Finance Tracker
 
-Tracklix is a personal learning project focused on building a finance-tracking dashboard using HTML, CSS, and JavaScript.
+A personal finance dashboard project built with HTML, CSS, and JavaScript.
 
-The project explores how a personal finance interface can be designed to organize income, expenses, budgets, and financial activity through a clean dashboard and interactive visualizations.
+Tracklix is an independent learning project created to explore frontend development, dashboard design, financial data visualization, and browser-based application functionality.
 
-It is an independent development project created for educational purposes and experimentation.
-
-> **Project Status:** Learning / Experimental Project  
-> **Intended Use:** Personal learning and development  
-> **Production Use:** Not intended for production or public financial use
+> **Project Type:** Personal Learning Project  
+> **Status:** Experimental / Under Development  
+> **Purpose:** Educational and portfolio demonstration
 
 ---
 
 ## Live Preview
 
-[View Tracklix](https://tracklix-frontend.vercel.app/)
+[Open Tracklix](https://tracklix-frontend.vercel.app/)
 
-The website is deployed for demonstration and testing purposes. Its availability does not mean that it is a finished, production-ready financial application.
+The website is deployed as a demonstration of the project. It is not a production-ready financial application, and some features may be incomplete or experimental.
 
-Some interfaces or features may be incomplete, experimental, or subject to change.
+## About
 
----
+The idea behind Tracklix was to build a personal finance dashboard and learn how different frontend components work together.
 
-## About the Project
+The project explores:
 
-Tracklix was developed as an opportunity to explore frontend development through a practical project.
-
-The main focus was to understand how different parts of a finance dashboard work together, including:
-
-- Dashboard layout and navigation
+- Financial dashboard layouts
 - Income and expense interfaces
-- Transaction organization
-- Financial charts and visualizations
-- Budget-related interfaces
-- Responsive layouts
-- Theme customization
+- Transaction management
+- Data visualization
+- Budget tracking interfaces
+- Responsive web design
+- Browser-side data handling
 
-The project is primarily focused on frontend development and user interface experimentation.
+It is developed for learning and experimentation, not for managing real-world finances.
 
----
+## Features & Development Areas
 
-## Project Features
-
-The frontend project explores the following areas. Actual functionality may vary depending on the current implementation.
+The following areas have been explored during development. Their availability and functionality may vary in the current version.
 
 ### Dashboard
 - Financial overview interface
@@ -50,50 +42,50 @@ The frontend project explores the following areas. Actual functionality may vary
 - Balance presentation
 - Recent activity layout
 
-### Transaction Interface
+### Transactions
 - Transaction entry interface
 - Category-based organization
 - Transaction listing
-- Search and filtering interfaces
+- Search and filtering
 
 ### Analytics
-- Chart-based financial visualization
 - Income and expense comparison
-- Expense category distribution
+- Expense category charts
+- Interactive data visualization
 
-### Budget Interface
-- Monthly budget presentation
+### Budget Management
+- Monthly budget interface
 - Spending progress indicators
-- Budget status visualization
+- Budget status presentation
 
 ### User Interface
-- Responsive page layouts
+- Responsive layouts
 - Dark and light themes
 - Form validation
-- Toast notifications
 - Interactive components
+- Toast notifications
 
-### Additional Experiments
+### Additional Development Areas
 - Authentication-related interfaces
-- Password reset flow UI
+- Password reset flow
 - CSV and PDF export functionality
 
-*These are areas explored during development, not a guarantee that every feature is fully functional or connected to a production backend.*
+*Listing a development area does not guarantee that it is fully implemented, connected to a backend, or production-ready.*
 
 ---
 
 ## Technology Stack
 
-### Frontend
+**Frontend**
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 
-### Libraries and Browser APIs
+**Libraries and Browser APIs**
 - Chart.js
 - Local Storage API
 
-### Deployment
+**Deployment**
 - Vercel
 
 ---
@@ -132,9 +124,9 @@ tracklix-frontend/
 
 ---
 
-## Run Locally
+## Getting Started
 
-To explore the project on your local machine:
+You can explore the project locally by following these steps.
 
 ### 1. Clone the repository
 
@@ -142,17 +134,17 @@ To explore the project on your local machine:
 git clone https://github.com/DhruvPatel011/Expense-Tracker.git
 ```
 
-### 2. Open the project directory
+### 2. Navigate to the project folder
 
 ```bash
 cd Expense-Tracker
 ```
 
-### 3. Run the frontend
+### 3. Run the project
 
-Open the project using VS Code Live Server or another local development server.
+Open the folder in VS Code and use Live Server, or run it through another local development server.
 
-No build process is required for the basic static frontend.
+No frontend build process is required for the basic static version.
 
 ---
 
@@ -162,67 +154,59 @@ The project also has a separately maintained backend repository:
 
 [Tracklix Backend](https://github.com/DhruvPatel011/tracklix-backend)
 
-The existence of a separate backend repository does not imply that every frontend feature is currently connected to or supported by the backend.
+The frontend and backend are maintained as separate repositories. Not every frontend feature is necessarily connected to the backend in the current deployment.
 
 ---
 
 ## Learning Objectives
 
-This project was created to practice and improve my understanding of:
+Building Tracklix has helped me explore and practice:
 
-- Structuring frontend applications
-- Writing modular JavaScript
-- Building responsive interfaces
-- Managing browser-side data
-- Creating interactive charts
-- Designing dashboard layouts
-- Working with frontend state and UI interactions
-- Organizing project files and components
+- Frontend application structure
+- Modular JavaScript
+- Responsive UI development
+- Browser-side data management
+- Data visualization with Chart.js
+- Dashboard development
+- Interactive components
+- Frontend user experience
 
 ---
 
 ## Future Improvements
 
-Possible areas for further development include:
+Some areas I may explore in future development:
 
-- More complete backend integration
-- Improved financial analytics
+- Improved backend integration
+- More detailed financial analytics
 - Savings goal management
 - Recurring transaction support
 - Multi-currency interfaces
 - Progressive Web App support
 
-These are development ideas and are not necessarily available in the current version.
+These are planned learning areas, not promises about the current version.
 
 ---
 
-## Important Notice
+## Privacy
 
-Tracklix is an independent educational and experimental project.
+Tracklix is an experimental project. Information entered into the website may be processed or stored depending on the features being used and the current application configuration.
 
-- It is not a banking application, financial institution, or investment service.
-- It does not provide financial, investment, tax, or legal advice.
-- It is not intended to process real financial transactions.
-- Do not enter actual banking credentials, payment details, or sensitive personal or financial information.
-- The deployed website is provided as a demonstration and may contain incomplete or experimental functionality.
-- No guarantee is made regarding the availability, accuracy, security, or persistence of displayed data.
-- Use of this project is at your own risk.
+Please do not enter real banking credentials, payment details, or sensitive financial information.
 
-**This project should not be relied upon for managing real-world finances.**
+Read the [Privacy Notice](PRIVACY.md) for more information about data handling and privacy considerations.
 
 ---
 
-## Usage & Copyright
+## License & Usage
 
-Copyright (c) 2026 Dhruv Patel.
+Tracklix is provided under the **Tracklix Personal Learning License**.
 
-This repository is published for educational and portfolio demonstration purposes.
+The source code may be viewed and used for personal learning and non-commercial educational experimentation, subject to the license terms.
 
-Public visibility of this repository or its deployed preview does not automatically grant permission to commercially use, redistribute, sublicense, or claim ownership of the original work.
+Commercial use and redistribution require prior written permission from the copyright holder.
 
-Unless a separate license is explicitly provided, all rights are reserved by the copyright holder.
-
-For permission beyond personal viewing and learning, contact the author.
+See the [LICENSE](LICENSE) file for the complete terms.
 
 ---
 
@@ -232,9 +216,10 @@ For permission beyond personal viewing and learning, contact the author.
 
 Computer Science Undergraduate | Full-Stack Developer
 
-- GitHub: [DhruvPatel011](https://github.com/DhruvPatel011)
+- GitHub: [@DhruvPatel011](https://github.com/DhruvPatel011)
 - Project: [Tracklix](https://tracklix-frontend.vercel.app/)
+- Repository: [Expense-Tracker](https://github.com/DhruvPatel011/Expense-Tracker)
 
 ---
 
-*Built as a learning experience through experimentation, development, and continuous improvement.*
+*Tracklix – A learning project built through experimentation, practice, and continuous improvement.*
