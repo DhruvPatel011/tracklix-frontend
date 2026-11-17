@@ -1,86 +1,100 @@
-# Tracklix Frontend
+# Tracklix – Personal Finance Tracker
 
-A modern and responsive Personal Finance Tracker frontend built with HTML, CSS, JavaScript, and Chart.js.
+Tracklix is a personal learning project focused on building a finance-tracking dashboard using HTML, CSS, and JavaScript.
 
-Tracklix helps users manage income, expenses, savings, and monthly budgets through an intuitive dashboard, interactive analytics, and a seamless user experience.
+The project explores how a personal finance interface can be designed to organize income, expenses, budgets, and financial activity through a clean dashboard and interactive visualizations.
+
+It is an independent development project created for educational purposes and experimentation.
+
+> **Project Status:** Learning / Experimental Project  
+> **Intended Use:** Personal learning and development  
+> **Production Use:** Not intended for production or public financial use
 
 ---
 
-## Live Demo
+## Live Preview
 
-https://tracklix-frontend.vercel.app/
+[View Tracklix](https://tracklix-frontend.vercel.app/)
+
+The website is deployed for demonstration and testing purposes. Its availability does not mean that it is a finished, production-ready financial application.
+
+Some interfaces or features may be incomplete, experimental, or subject to change.
 
 ---
 
-## Features
+## About the Project
 
-### Authentication Interface
+Tracklix was developed as an opportunity to explore frontend development through a practical project.
 
-* User Registration
-* Secure Login System
-* OTP-Based Password Reset Flow
-* Form Validation
-* Password Strength Indicator
+The main focus was to understand how different parts of a finance dashboard work together, including:
+
+- Dashboard layout and navigation
+- Income and expense interfaces
+- Transaction organization
+- Financial charts and visualizations
+- Budget-related interfaces
+- Responsive layouts
+- Theme customization
+
+The project is primarily focused on frontend development and user interface experimentation.
+
+---
+
+## Project Features
+
+The frontend project explores the following areas. Actual functionality may vary depending on the current implementation.
 
 ### Dashboard
+- Financial overview interface
+- Income and expense summaries
+- Balance presentation
+- Recent activity layout
 
-* Financial Overview Cards
-* Income & Expense Summary
-* Current Balance Tracking
-* Savings Rate Calculation
-* Recent Activity Section
+### Transaction Interface
+- Transaction entry interface
+- Category-based organization
+- Transaction listing
+- Search and filtering interfaces
 
-### Transaction Management
+### Analytics
+- Chart-based financial visualization
+- Income and expense comparison
+- Expense category distribution
 
-* Add, Edit, and Delete Transactions
-* Category-Based Organization
-* Search and Filter Functionality
-* Transaction History
+### Budget Interface
+- Monthly budget presentation
+- Spending progress indicators
+- Budget status visualization
 
-### Analytics & Reports
+### User Interface
+- Responsive page layouts
+- Dark and light themes
+- Form validation
+- Toast notifications
+- Interactive components
 
-* Expense Distribution Charts
-* Income vs Expense Analysis
-* Savings Insights
-* Interactive Data Visualization
+### Additional Experiments
+- Authentication-related interfaces
+- Password reset flow UI
+- CSV and PDF export functionality
 
-### Budget Management
-
-* Monthly Budget Tracking
-* Spending Progress Indicators
-* Budget Status Monitoring
-
-### User Experience
-
-* Responsive Design
-* Dark/Light Theme Support
-* Toast Notifications
-* Smooth Animations
-* Mobile-Friendly Layout
-
-### Export Functionality
-
-* CSV Export
-* PDF Report Generation
+*These are areas explored during development, not a guarantee that every feature is fully functional or connected to a production backend.*
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-### Frontend Technologies
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (ES6+)
 
-* HTML5
-* CSS3
-* JavaScript (ES6+)
-* Chart.js
-* Local Storage API
+### Libraries and Browser APIs
+- Chart.js
+- Local Storage API
 
-### UI & Design
-
-* Responsive Web Design
-* Modern Dashboard Layout
-* Dark/Light Theme System
-* Interactive Components
+### Deployment
+- Vercel
 
 ---
 
@@ -118,67 +132,109 @@ tracklix-frontend/
 
 ---
 
-## Getting Started
+## Run Locally
 
-Clone the repository:
+To explore the project on your local machine:
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/DhruvPatel011/Expense-Tracker.git
 ```
 
-Navigate to the project:
+### 2. Open the project directory
 
 ```bash
 cd Expense-Tracker
 ```
 
-Run using Live Server or any local development server.
+### 3. Run the frontend
+
+Open the project using VS Code Live Server or another local development server.
+
+No build process is required for the basic static frontend.
 
 ---
 
-## Backend Repository
+## Related Repository
 
-This frontend is powered by the Tracklix Backend API:
+The project also has a separately maintained backend repository:
 
-https://github.com/DhruvPatel011/tracklix-backend
+[Tracklix Backend](https://github.com/DhruvPatel011/tracklix-backend)
 
----
-
-## Learning Outcomes
-
-Building this project helped me improve my understanding of:
-
-* Frontend Architecture
-* Modular JavaScript Development
-* State Management
-* Data Visualization
-* Responsive UI Design
-* User Experience Optimization
-* Dashboard Development
-* Real-World Project Structure
+The existence of a separate backend repository does not imply that every frontend feature is currently connected to or supported by the backend.
 
 ---
 
-## Future Enhancements
+## Learning Objectives
 
-* Advanced Financial Insights
-* AI-Powered Spending Analysis
-* Goal-Based Savings Tracking
-* Recurring Transactions
-* Multi-Currency Support
-* Progressive Web App (PWA)
+This project was created to practice and improve my understanding of:
+
+- Structuring frontend applications
+- Writing modular JavaScript
+- Building responsive interfaces
+- Managing browser-side data
+- Creating interactive charts
+- Designing dashboard layouts
+- Working with frontend state and UI interactions
+- Organizing project files and components
+
+---
+
+## Future Improvements
+
+Possible areas for further development include:
+
+- More complete backend integration
+- Improved financial analytics
+- Savings goal management
+- Recurring transaction support
+- Multi-currency interfaces
+- Progressive Web App support
+
+These are development ideas and are not necessarily available in the current version.
+
+---
+
+## Important Notice
+
+Tracklix is an independent educational and experimental project.
+
+- It is not a banking application, financial institution, or investment service.
+- It does not provide financial, investment, tax, or legal advice.
+- It is not intended to process real financial transactions.
+- Do not enter actual banking credentials, payment details, or sensitive personal or financial information.
+- The deployed website is provided as a demonstration and may contain incomplete or experimental functionality.
+- No guarantee is made regarding the availability, accuracy, security, or persistence of displayed data.
+- Use of this project is at your own risk.
+
+**This project should not be relied upon for managing real-world finances.**
+
+---
+
+## Usage & Copyright
+
+Copyright (c) 2026 Dhruv Patel.
+
+This repository is published for educational and portfolio demonstration purposes.
+
+Public visibility of this repository or its deployed preview does not automatically grant permission to commercially use, redistribute, sublicense, or claim ownership of the original work.
+
+Unless a separate license is explicitly provided, all rights are reserved by the copyright holder.
+
+For permission beyond personal viewing and learning, contact the author.
 
 ---
 
 ## Author
 
-Dhruv Patel
+**Dhruv Patel**
 
-Computer Science Undergraduate | Full-Stack Developer | AI Enthusiast
+Computer Science Undergraduate | Full-Stack Developer
 
-GitHub:
-https://github.com/DhruvPatel011
+- GitHub: [DhruvPatel011](https://github.com/DhruvPatel011)
+- Project: [Tracklix](https://tracklix-frontend.vercel.app/)
 
 ---
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+*Built as a learning experience through experimentation, development, and continuous improvement.*
